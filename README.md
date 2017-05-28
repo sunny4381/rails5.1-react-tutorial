@@ -118,7 +118,13 @@ ol, ul {
 次に JS をコピペします。
 `app/javascript/packs/game_react.jsx` という名前でファイルを作成します。
 
-コピペする際に、先頭3行を次のようにし、React, ReactDOM のインポートと上で作成した CSS への参照を追加します。
+コピペする際に、本プロジェクト向けに次の点を改変します。
+
+- 先頭2行で React, ReactDOM をインポート
+- 3 行目に上で作成した CSS への参照の追加
+- ファイルの末尾で、`ReactDOM.render` を `document.addEventListener('DOMContentLoaded', () => {` で囲む
+
+改変後の JS は次のようになります。
 
 ```
 import React from 'react';
@@ -185,10 +191,12 @@ class Game extends React.Component {
 
 // ========================================
 
-ReactDOM.render(
-  <Game />,
-  document.getElementById('root')
-);
+document.addEventListener('DOMContentLoaded', () => {
+  ReactDOM.render(
+    <Game />,
+    document.getElementById('root')
+  );
+});
 ```
 
 #### HTML
@@ -262,3 +270,7 @@ $ bin/webpack-dev-server
 次の画面が表示されれば成功です。
 
 ![Starter Code 実行結果](img/starter-code.png)
+
+### 7. その後
+
+React Tutorial を最後まで進めてみてください。
